@@ -90,5 +90,16 @@ pipeline {
                 }
             }
         }
+        stage ('Deploy') {
+//             when {
+//                 branch 'master'
+//             }
+            steps {
+                sh '''
+                    pwd
+                    oci os object put --bucket-name=wko-system-test-files --file=installer/target/imagetool.zip
+                '''
+            }
+        }
      }
 }

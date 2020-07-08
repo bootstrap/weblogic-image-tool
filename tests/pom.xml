@@ -19,6 +19,7 @@
     <properties>
         <sonar.coverage.jacoco.xmlReportPaths>${basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
         <skipITs>false</skipITs>
+        <test.staging.dir>MUST BE SET TO REPO FOR PATCHES AND INSTALLERS</test.staging.dir>
     </properties>
 
     <dependencies>
