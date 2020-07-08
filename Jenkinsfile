@@ -96,9 +96,7 @@ pipeline {
 //             }
             steps {
                 sh '''
-                    pwd
-                    ls -al
-                    ls -al installer/target
+                    export PATH=/var/lib/jenkins/bin:$PATH
                     oci os object put --bucket-name=wko-system-test-files --file=installer/target/imagetool.zip
                 '''
             }
