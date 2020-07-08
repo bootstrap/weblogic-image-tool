@@ -97,6 +97,8 @@ pipeline {
             steps {
                 sh '''
                     pwd
+                    ls -al
+                    ls -al installer/target
                     oci os object put --bucket-name=wko-system-test-files --file=installer/target/imagetool.zip
                 '''
             }
