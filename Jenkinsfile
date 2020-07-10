@@ -95,15 +95,17 @@ pipeline {
 //                 branch 'master'
 //             }
             steps {
-                withCredentials([file(credentialsId: 'jenkins.build.phx', variable: 'OCI_CONFIG_FILE')]) {
-                sh '''
-//                     export OCI_CONFIG_FILE=/var/lib/jenkins/.oci/config
-                    echo ${OCI_CONFIG_FILE}
-                    cat ${OCI_CONFIG_FILE}
-                    export PATH=/var/lib/jenkins/bin:$PATH
-//                     export OCI_CLI_PROFILE=MONICA
-                    oci os object put --namespace=weblogick8s --bucket-name=wko-system-test-files --file=installer/target/imagetool.zip
-                '''                }
+//                 withCredentials([file(credentialsId: 'jenkins.build.phx', variable: 'OCI_CONFIG_FILE')]) {
+                    sh '''
+//                         export OCI_CONFIG_FILE=/var/lib/jenkins/.oci/config
+//                         echo ${OCI_CONFIG_FILE}
+//                         cat ${OCI_CONFIG_FILE}
+                        export PATH=/var/lib/jenkins/bin:$PATH
+                        export OCI_CLI_AUTH=instance_principal
+//                         export OCI_CLI_PROFILE=MONICA
+                        oci os object put --namespace=weblogick8s --bucket-name=wko-system-test-files --file=installer/target/imagetool.zip
+                    '''
+//                 }
             }
         }
      }
