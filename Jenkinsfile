@@ -97,8 +97,7 @@ pipeline {
             steps {
                 sh '''
                     export PATH=/var/lib/jenkins/bin:$PATH
-                    export OCI_CLI_AUTH=instance_principal
-                    oci os object put --namespace=weblogick8s --bucket-name=wko-system-test-files --file=installer/target/imagetool.zip
+                    oci os object put --namespace=weblogick8s --bucket-name=wko-system-test-files --config-file=/dev/null --auth=instance_principal --file=installer/target/imagetool.zip
                 '''
             }
         }
