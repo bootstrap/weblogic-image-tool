@@ -96,7 +96,7 @@ pipeline {
 //             }
             steps {
                 sh '''
-                    oci os object put --namespace=weblogick8s --bucket-name=wko-system-test-files --config-file=/dev/null --auth=instance_principal --file=installer/target/imagetool.zip
+                    oci os object put --namespace=weblogick8s --bucket-name=wko-system-test-files --config-file=/dev/null --auth=instance_principal --force --file=installer/target/imagetool.zip
                 '''
             }
         }
