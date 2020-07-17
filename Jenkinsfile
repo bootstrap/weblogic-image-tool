@@ -67,23 +67,23 @@ pipeline {
                 }
             }
         }
-//         stage ('SystemTest Full') {
-//             steps {
-//                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'otn-cred', passwordVariable: 'ORACLE_SUPPORT_PASSWORD', usernameVariable: 'ORACLE_SUPPORT_USERNAME']]) {
-//                     sh 'mvn verify -Dtest.staging.dir=${STAGING_DIR} -Dtest.groups=gate,nightly'
-//                 }
-//             }
-//             post {
-//                 always {
-//                     junit 'tests/target/failsafe-reports/*.xml'
-//                 }
-//                 failure {
-//                     mail to: "${env.WIT_BUILD_NOTIFICATION_EMAIL_TO}", from: 'noreply@oracle.com',
-//                     subject: "WebLogic Image Tool: ${env.JOB_NAME} - Failed",
-//                     body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n"
-//                 }
-//             }
-//         }
+        stage ('SystemTest Full') {
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'otn-cred', passwordVariable: 'ORACLE_SUPPORT_PASSWORD', usernameVariable: 'ORACLE_SUPPORT_USERNAME']]) {
+                    sh 'mvn verify -Dtest.staging.dir=${STAGING_DIR} -Dtest.groups=gate,nightly'
+                }
+            }
+            post {
+                always {
+                    junit 'tests/target/failsafe-reports/*.xml'
+                }
+                failure {
+                    mail to: "${env.WIT_BUILD_NOTIFICATION_EMAIL_TO}", from: 'noreply@oracle.com',
+                    subject: "WebLogic Image Tool: ${env.JOB_NAME} - Failed",
+                    body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n"
+                }
+            }
+        }
         stage ('Save Artifact'){
             steps {
                 sh '''
