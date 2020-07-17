@@ -55,7 +55,7 @@ class AruUtilTest {
     }
 
     @Test
-    void testRecommendedPsuPatches() throws Exception {
+    void testRecommendedPatches() throws Exception {
         String[] expected = { "30965714_12.2.1.3.0","28512225_12.2.1.3.0","28278427_12.2.1.3.0" };
         expect(mock.category()).andReturn(FmwInstallerType.WLS).anyTimes();
         expect(mock.release()).andReturn(AruUtilTestConstants.ReleaseNumber).anyTimes();
@@ -67,8 +67,7 @@ class AruUtilTest {
         expect(mock.success()).andReturn(true).anyTimes();
         expect(mock.results()).andReturn(AruUtilTestConstants.getPatchesResponse());
         replay(mock);
-        List<String> resultList =
-            AruUtil.getLatestPsuRecommendedPatches(mock);
+        List<String> resultList = AruUtil.getRecommendedPatches(mock);
         verify(mock);
         assertNotNull(resultList);
         String[] resultArray = resultList.toArray(new String[resultList.size()]);
@@ -88,7 +87,7 @@ class AruUtilTest {
         expect(mock.errorMessage()).andReturn("No results found").anyTimes();
         replay(mock);
         List<String> resultList =
-            AruUtil.getLatestPsuRecommendedPatches(mock);
+            AruUtil.getRecommendedPatches(mock);
         verify(mock);
         assertTrue(resultList.isEmpty());
     }

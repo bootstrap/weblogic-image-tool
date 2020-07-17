@@ -84,7 +84,7 @@ pipeline {
                 }
             }
         }
-        stage {
+        stage ('Save Artifact'){
             steps {
                 sh '''
                     test -z "${TAG_NAME}" && export TARGET_SUFFIX="-master" || export TARGET_SUFFIX="-${TAG_NAME}"

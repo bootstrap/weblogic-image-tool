@@ -80,26 +80,26 @@ public class AruUtil {
     }
 
     /**
-     * Get list of PSU available for given category and release.
+     * Get list of recommended patches from ARU for given category and release.
      *
      * @param category wls or fmw
      * @param version  version number like 12.2.1.3.0
      * @param userId   user
      * @return Document listing of all patches (full details)
      */
-    public static List<String> getLatestPsuRecommendedPatches(FmwInstallerType category, String version,
-                                                        String userId, String password) throws Exception {
-        return getLatestPsuRecommendedPatches(new AruHttpHelper(category, version, userId, password));
+    public static List<String> getRecommendedPatches(FmwInstallerType category, String version,
+                                                     String userId, String password) throws Exception {
+        return getRecommendedPatches(new AruHttpHelper(category, version, userId, password));
     }
 
     /**
-     * Get the latest PSU along with recommended patches for the information in the search helper.
+     * Get list of recommended patches from ARU for given category and release.
      *
      * @param aruHttpHelper containing the search category, version and credentials
      * @return List of recommended patches
      * @throws Exception the search or resulting parse failed
      */
-    static List<String> getLatestPsuRecommendedPatches(AruHttpHelper aruHttpHelper)
+    static List<String> getRecommendedPatches(AruHttpHelper aruHttpHelper)
         throws Exception {
         logger.entering(aruHttpHelper);
         try {

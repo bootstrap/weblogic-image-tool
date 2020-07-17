@@ -249,7 +249,7 @@ public abstract class CommonOptions {
         if (recommendedPatches) {
             // Get the latest PSU and its recommended patches
             List<String> patchList =
-                AruUtil.getLatestPsuRecommendedPatches(FmwInstallerType.WLS, getInstallerVersion(), userId, password);
+                AruUtil.getRecommendedPatches(FmwInstallerType.WLS, getInstallerVersion(), userId, password);
 
             if (patchList.isEmpty()) {
                 recommendedPatches = false;
