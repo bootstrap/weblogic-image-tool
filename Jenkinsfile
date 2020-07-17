@@ -88,7 +88,7 @@ pipeline {
             steps {
                 sh '''
                     test -z "${TAG_NAME}" && export TARGET_SUFFIX="-master" || export TARGET_SUFFIX="-${TAG_NAME}"
-                    oci os object put --namespace=weblogick8s --bucket-name=wko-system-test-files --config-file=/dev/null --auth=instance_principal --force --file=installer/target/imagetool${TARGET_SUFFIX}.zip
+                    oci os object put --namespace=weblogick8s --bucket-name=wko-system-test-files --config-file=/dev/null --auth=instance_principal --force --file=installer/target/imagetool.zip --name=imagetool${TARGET_SUFFIX}.zip
                 '''
             }
         }
